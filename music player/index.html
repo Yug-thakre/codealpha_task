@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RedWave Music Player</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="player">
+
+        <!-- Header -->
+        <header class="header">
+            <h2>RED<span>WAVE</span></h2>
+            <div class="menu">•••</div>
+        </header>
+
+        <!-- Album -->
+        <div class="album-container">
+            <img
+                id="album"
+                src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=600"
+                alt="Album Cover"
+            >
+        </div>
+
+        <!-- Song Details -->
+        <div class="song-info">
+            <h1 id="title">Blinding Lights</h1>
+            <p id="artist">The Weeknd</p>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-area">
+
+            <input
+                type="range"
+                id="progress"
+                min="0"
+                max="100"
+                value="0"
+            >
+
+            <div class="time">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+
+            <button id="shuffleBtn">🔀</button>
+
+            <button id="prevBtn">⏮</button>
+
+            <button id="playBtn" class="play-btn">
+                ▶
+            </button>
+
+            <button id="nextBtn">⏭</button>
+
+            <button id="repeatBtn">🔁</button>
+
+        </div>
+
+        <!-- Volume -->
+        <div class="volume">
+
+            <span>🔊</span>
+
+            <input
+                type="range"
+                id="volume"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+            >
+
+        </div>
+
+        <!-- Playlist Heading -->
+        <div class="playlist-heading">
+            <h3>My Playlist</h3>
+            <span id="songCount">0 Songs</span>
+        </div>
+
+        <!-- Playlist -->
+        <div id="playlist" class="playlist"></div>
+
+        <!-- Autoplay -->
+        <div class="autoplay">
+
+            <span>Autoplay next song</span>
+
+            <label class="switch">
+
+                <input
+                    type="checkbox"
+                    id="autoplay"
+                    checked
+                >
+
+                <span class="slider"></span>
+
+            </label>
+
+        </div>
+
+        <!-- Audio -->
+        <audio id="audio"></audio>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
