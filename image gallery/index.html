@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Photos</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-icon">✦</div>
+      <span>Photos</span>
+    </div>
+
+
+    <nav class="navigation">
+
+      <button class="nav-item active" data-page="photos">
+        <span class="nav-icon">▦</span>
+        <span>Photos</span>
+        <span class="nav-count" id="photosCount">0</span>
+      </button>
+
+
+      <button class="nav-item" data-page="favorites">
+        <span class="nav-icon">♡</span>
+        <span>Favorites</span>
+        <span class="nav-count" id="favoriteCount">0</span>
+      </button>
+
+
+      <button class="nav-item" data-page="recent">
+        <span class="nav-icon">◷</span>
+        <span>Recent</span>
+      </button>
+
+
+      <button class="nav-item" data-page="private">
+        <span class="nav-icon">♙</span>
+        <span>Private</span>
+        <span class="nav-count" id="privateCount">0</span>
+      </button>
+
+
+      <div class="sidebar-line"></div>
+
+
+      <button class="nav-item trash-nav" data-page="trash">
+        <span class="nav-icon">⌫</span>
+        <span>Recently Deleted</span>
+        <span class="nav-count" id="trashCount">0</span>
+      </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <button class="upload-side-btn" id="uploadButton">
+        <span>＋</span>
+        Add Photos
+      </button>
+
+      <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+        multiple
+        hidden
+      >
+
+      <p class="storage-text">
+        Photos · Local Library
+      </p>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+
+  <main class="main">
+
+    <!-- Top Bar -->
+
+    <header class="topbar">
+
+      <div class="page-heading">
+
+        <h1 id="pageTitle">Photos</h1>
+
+        <span id="photoTotal">0 photos</span>
+
+      </div>
+
+
+      <div class="top-actions">
+
+        <div class="search-box">
+
+          <span>⌕</span>
+
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search photos..."
+          >
+
+          <button
+            id="clearSearch"
+            class="clear-search"
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        <select id="sortSelect">
+
+          <option value="newest">
+            Newest
+          </option>
+
+          <option value="oldest">
+            Oldest
+          </option>
+
+          <option value="name">
+            Name
+          </option>
+
+        </select>
+
+
+        <button
+          class="add-button"
+          id="topUpload"
+        >
+          + Add
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- Category chips -->
+
+    <div class="chips">
+
+      <button
+        class="chip active"
+        data-category="all"
+      >
+        All
+      </button>
+
+      <button
+        class="chip"
+        data-category="nature"
+      >
+        Nature
+      </button>
+
+      <button
+        class="chip"
+        data-category="travel"
+      >
+        Travel
+      </button>
+
+      <button
+        class="chip"
+        data-category="city"
+      >
+        City
+      </button>
+
+      <button
+        class="chip"
+        data-category="animals"
+      >
+        Animals
+      </button>
+
+    </div>
+
+
+    <!-- Gallery -->
+
+    <section
+      class="gallery"
+      id="gallery"
+    ></section>
+
+
+    <!-- Empty state -->
+
+    <section
+      class="empty-state"
+      id="emptyState"
+      hidden
+    >
+
+      <div class="empty-icon">
+        ◌
+      </div>
+
+      <h2>No photos here</h2>
+
+      <p>
+        Try another category or add some photos to your library.
+      </p>
+
+      <button id="emptyAddButton">
+        Add Photos
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       VIEWER
+  ========================== -->
+
+  <div
+    class="viewer"
+    id="viewer"
+  >
+
+    <button
+      class="viewer-close"
+      id="viewerClose"
+    >
+      ×
+    </button>
+
+
+    <button
+      class="viewer-arrow viewer-prev"
+      id="viewerPrev"
+    >
+      ‹
+    </button>
+
+
+    <div class="viewer-content">
+
+      <img
+        id="viewerImage"
+        src=""
+        alt=""
+      >
+
+      <div class="viewer-caption">
+
+        <div>
+          <h2 id="viewerTitle"></h2>
+          <p id="viewerDetails"></p>
+        </div>
+
+        <div class="viewer-tools">
+
+          <button id="viewerFavorite">
+            ♡
+          </button>
+
+          <button id="viewerEdit">
+            Edit
+          </button>
+
+          <button id="viewerDelete">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="viewer-arrow viewer-next"
+      id="viewerNext"
+    >
+      ›
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       EDIT MODAL
+  ========================== -->
+
+  <div
+    class="modal"
+    id="editModal"
+  >
+
+    <div class="edit-panel">
+
+      <div class="edit-header">
+
+        <div>
+          <span class="small-label">
+            Photo Editor
+          </span>
+
+          <h2>Edit Photo</h2>
+        </div>
+
+        <button
+          class="modal-close"
+          id="editClose"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="edit-preview">
+
+        <img
+          id="editImage"
+          src=""
+          alt=""
+        >
+
+      </div>
+
+
+      <div class="edit-controls">
+
+        <div class="control">
+
+          <label>
+            Brightness
+            <span id="brightnessValue">100%</span>
+          </label>
+
+          <input
+            type="range"
+            id="brightness"
+            min="50"
+            max="150"
+            value="100"
+          >
+
+        </div>
+
+
+        <div class="control">
+
+          <label>
+            Contrast
+            <span id="contrastValue">100%</span>
+          </label>
+
+          <input
+            type="range"
+            id="contrast"
+            min="50"
+            max="150"
+            value="100"
+          >
+
+        </div>
+
+
+        <div class="control">
+
+          <label>
+            Saturation
+            <span id="saturationValue">100%</span>
+          </label>
+
+          <input
+            type="range"
+            id="saturation"
+            min="0"
+            max="200"
+            value="100"
+          >
+
+        </div>
+
+
+        <div class="control">
+
+          <label>
+            Grayscale
+            <span id="grayscaleValue">0%</span>
+          </label>
+
+          <input
+            type="range"
+            id="grayscale"
+            min="0"
+            max="100"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="control">
+
+          <label>
+            Sepia
+            <span id="sepiaValue">0%</span>
+          </label>
+
+          <input
+            type="range"
+            id="sepia"
+            min="0"
+            max="100"
+            value="0"
+          >
+
+        </div>
+
+
+        <div class="edit-actions">
+
+          <button
+            class="secondary-button"
+            id="rotateButton"
+          >
+            ↻ Rotate
+          </button>
+
+          <button
+            class="secondary-button"
+            id="resetEdit"
+          >
+            Reset
+          </button>
+
+          <button
+            class="save-button"
+            id="saveEdit"
+          >
+            Save Changes
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       DELETE CONFIRMATION
+  ========================== -->
+
+  <div
+    class="confirm-modal"
+    id="confirmModal"
+  >
+
+    <div class="confirm-box">
+
+      <div class="confirm-icon">
+        🗑
+      </div>
+
+      <h2 id="confirmTitle">
+        Move to Recently Deleted?
+      </h2>
+
+      <p id="confirmText">
+        You can restore this photo later.
+      </p>
+
+      <div class="confirm-actions">
+
+        <button
+          class="cancel-button"
+          id="confirmCancel"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="danger-button"
+          id="confirmDelete"
+        >
+          Delete
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
