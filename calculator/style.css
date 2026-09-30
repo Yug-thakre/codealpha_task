@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #000;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: white;
+}
+
+.app {
+  display: flex;
+  align-items: stretch;
+  gap: 25px;
+}
+
+/* Calculator */
+
+.calculator {
+  width: 360px;
+  padding: 20px;
+  background: #000;
+}
+
+.display {
+  width: 100%;
+  height: 120px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  padding: 10px 8px;
+
+  color: white;
+  background: #000;
+
+  font-size: 64px;
+  font-weight: 300;
+
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.btn {
+  width: 72px;
+  height: 72px;
+
+  border: none;
+  border-radius: 50%;
+
+  font-size: 30px;
+  font-weight: 400;
+
+  color: white;
+  background: #333;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.08s ease,
+    filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.25);
+}
+
+.btn:active {
+  transform: scale(0.90);
+}
+
+.function {
+  background: #a5a5a5;
+  color: #000;
+}
+
+.operator,
+.equals {
+  background: #ff9f0a;
+  color: white;
+}
+
+.operator.active {
+  background: white;
+  color: #ff9f0a;
+}
+
+.zero {
+  width: 156px;
+
+  grid-column: span 2;
+
+  border-radius: 36px;
+
+  text-align: left;
+  padding-left: 27px;
+}
+
+
+/* History */
+
+.history {
+  width: 300px;
+  height: 470px;
+
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background: #1c1c1e;
+
+  border-radius: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #3a3a3c;
+}
+
+.history-header h2 {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+#clearHistory {
+  border: none;
+  background: transparent;
+
+  color: #ff9f0a;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+#clearHistory:hover {
+  color: #ffb340;
+}
+
+.history-list {
+  flex: 1;
+
+  margin-top: 10px;
+
+  overflow-y: auto;
+}
+
+.empty-history {
+  margin-top: 30px;
+
+  color: #777;
+
+  text-align: center;
+
+  font-size: 15px;
+}
+
+.history-item {
+  padding: 13px 8px;
+
+  border-bottom: 1px solid #333;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.history-item:hover {
+  background: #2c2c2e;
+
+  border-radius: 8px;
+}
+
+.history-expression {
+  color: #aaa;
+
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}
+
+.history-result {
+  color: white;
+
+  font-size: 22px;
+}
+
+
+/* Scrollbar */
+
+.history-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 750px) {
+
+  body {
+    align-items: flex-start;
+
+    padding: 20px 10px;
+  }
+
+  .app {
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+  }
+
+  .history {
+    width: 360px;
+    max-width: 100%;
+    height: 250px;
+
+    margin-top: 0;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .calculator {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .display {
+    height: 110px;
+
+    font-size: 54px;
+  }
+
+  .buttons {
+    gap: 9px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 70px;
+
+    font-size: 28px;
+  }
+
+  .zero {
+    width: 100%;
+  }
+
+}

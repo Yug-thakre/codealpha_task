@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Red Apple Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Calculator -->
+        <main class="calculator">
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+
+                <div class="brand">
+                    <span class="red-dot"></span>
+                    CALCULATOR
+                </div>
+
+                <!-- History Button -->
+                <button id="historyToggle" class="history-btn">
+                    ◷
+                </button>
+
+            </div>
+
+
+            <!-- Display -->
+            <div class="display">
+
+                <div id="previousDisplay" class="previous-display"></div>
+
+                <div id="display" class="main-display">
+                    0
+                </div>
+
+            </div>
+
+
+            <!-- Calculator Buttons -->
+            <div class="buttons">
+
+                <button class="btn function" id="clear">
+                    AC
+                </button>
+
+                <button class="btn function" id="sign">
+                    +/−
+                </button>
+
+                <button class="btn function" id="percent">
+                    %
+                </button>
+
+                <button class="btn operator" data-operation="divide">
+                    ÷
+                </button>
+
+
+                <button class="btn number" data-number="7">
+                    7
+                </button>
+
+                <button class="btn number" data-number="8">
+                    8
+                </button>
+
+                <button class="btn number" data-number="9">
+                    9
+                </button>
+
+                <button class="btn operator" data-operation="multiply">
+                    ×
+                </button>
+
+
+                <button class="btn number" data-number="4">
+                    4
+                </button>
+
+                <button class="btn number" data-number="5">
+                    5
+                </button>
+
+                <button class="btn number" data-number="6">
+                    6
+                </button>
+
+                <button class="btn operator" data-operation="subtract">
+                    −
+                </button>
+
+
+                <button class="btn number" data-number="1">
+                    1
+                </button>
+
+                <button class="btn number" data-number="2">
+                    2
+                </button>
+
+                <button class="btn number" data-number="3">
+                    3
+                </button>
+
+                <button class="btn operator" data-operation="add">
+                    +
+                </button>
+
+
+                <button class="btn number zero" data-number="0">
+                    0
+                </button>
+
+                <button class="btn number" data-number=".">
+                    .
+                </button>
+
+                <button class="btn equals" id="equals">
+                    =
+                </button>
+
+            </div>
+
+
+            <div class="keyboard-hint">
+                Keyboard supported • Enter = calculate • Esc = clear
+            </div>
+
+        </main>
+
+
+        <!-- History -->
+        <aside class="history-panel" id="historyPanel">
+
+            <div class="history-header">
+
+                <div>
+                    <p>CALCULATIONS</p>
+                    <h2>History</h2>
+                </div>
+
+                <button id="clearHistory">
+                    Clear
+                </button>
+
+            </div>
+
+
+            <div id="historyList" class="history-list">
+
+                <div class="empty-history">
+
+                    <div class="history-icon">
+                        ◷
+                    </div>
+
+                    <p>No calculations yet</p>
+
+                    <span>
+                        Your calculations will appear here
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
